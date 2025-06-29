@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'block'
+    'block',
+    'crispy_forms',
+    "crispy_bootstrap4",
+    'dashboards',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +66,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'block.context_processors.get_categories'
             ],
         },
     },
@@ -118,7 +122,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
-STATICFILES_DIRS = [BASE_DIR / 'assets']
+STATICFILES_DIRS = [
+    BASE_DIR / 'block' / 'static',   # block/static/
+]
 MEDIA_ROOT = BASE_DIR / 'media'
 STATIC_ROOT = BASE_DIR/ 'staticfiles'
 
@@ -126,3 +132,6 @@ STATIC_ROOT = BASE_DIR/ 'staticfiles'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
