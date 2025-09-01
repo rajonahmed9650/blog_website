@@ -27,7 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
+CSRF_TRUSTED_ORIGINS = [
+    "https://blog-website-7-2ffp.onrender.com",
+]
 
 
 
