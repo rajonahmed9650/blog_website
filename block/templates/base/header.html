@@ -11,7 +11,9 @@
   <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
   <link href="{% static 'block/css/block.css'%}" rel="stylesheet">
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -35,6 +37,23 @@
           <a class="btn btn-sm btn-warning" href="{% url 'login' %}">Login</a> &nbsp;
           <a class="btn btn-sm btn-outline-secondary" href="{% url 'register' %}">Register</a>
           {% else %}
+          <a href="{% url 'profile_view' %}" class="d-inline-block mr-2 rounded-circle border"
+            style="width: 60px; height: 60px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+
+            {% if profile and profile.profile_image %}
+            <!-- Profile image আছে -->
+            <img src="{{ profile.profile_image.url }}" alt="Profile"
+              style="width: 100%; height: 100%; object-fit: cover;">
+            {% else %}
+            <!-- Profile image নেই, default image দেখাবে -->
+            <img src="{% static 'block/images/user.png' %}" alt="Default Profile"
+              style="width: 100%; height: 100%; object-fit: cover;">
+            {% endif %}
+          </a>
+
+
+
+
           <span><a href="{% url 'dashboard:dashboard' %}" class=" btn btn-warning">Dashboard</a></span> &nbsp;
           <span><a href="{% url 'logout' %}">Logout</a></span>
           {% endif %}

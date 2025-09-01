@@ -2,9 +2,11 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from block.models import Category,Blogs
 from django.contrib.auth.decorators import login_required
-from .forms import CategoryForm,BlogsForm
+from .forms import CategoryForm,BlogsForm,AddUserForm,EditForm
 from django.shortcuts import get_object_or_404
 from django.template.defaultfilters import slugify
+from accounts.models import CustomUser
+
 
 # Create your views here.
 @login_required(login_url='login')
@@ -111,3 +113,50 @@ def update_posts(request,pk):
          'post': post
     } 
     return render(request,'dashboard/update_post.html',context)   
+
+
+
+def users(request):
+    users = CustomUser.objects.all()
+    context = {
+        'users':users
+    }
+    return render(request,'dashboard/users.html',context)
+
+
+
+def add_users(request):
+    if request.method == 'POST':
+        form = AddUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('dashobard:users')
+    form = AddUserForm()
+    context = {
+        'form':form
+    }
+    return render(request,'dashboard/add_users.html',context)
+
+
+
+def update_users(request,pk):
+    user = get_object_or_404(CustomUser,pk=pk)
+    if request.method == 'POST':
+        form = EditForm(request.POST, instance= user)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard:users')
+        else:
+            print(form.errors)
+    form = EditForm(instance = user )
+    context = {
+        'form':form,
+        'user':user
+    }    
+    return render(request,'dashboard/update_users.html',context)
+
+
+def delete_users(request,pk):
+    user = get_object_or_404(CustomUser,pk = pk)
+    user.delete()
+    return redirect('dashboard:users')

@@ -19,11 +19,12 @@
                 <!-- Preview image figure-->
                 <figure class="mb-4"><img class="img-fluid rounded"
                         src="{{ single_post.blog_image.url }}" alt="..." /></figure>
-                <!-- Post content-->
-                <section class="mb-5">
+                <div>
                     <p class="fs-5 mb-4">{{ single_post.short_description }}</p>
                     <p class="fs-5 mb-4">{{ single_post.blog_body }}</p>
-                </section>
+                </div>        
+                <!-- Post content-->
+                {% include './comment.html '%}
             </article>
         </div>
         <!-- Side widgets-->

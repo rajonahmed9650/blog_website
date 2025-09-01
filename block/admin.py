@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category,Blogs
+from .models import Category,Blogs,Comment
 class  CategoryAdmin(admin.ModelAdmin):
     list_display = ('id','category_name','created_at','update_at')
     ordering = ('id',) 
@@ -15,4 +15,4 @@ class BlogAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(Blogs,BlogAdmin)
-
+admin.site.register(Comment)

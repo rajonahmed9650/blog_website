@@ -13,7 +13,7 @@
     <!-- right sidebar -->
     <div class="col-md-9">
         <h3>All Posts</h3>
-        <a href="{% url 'dashboard:posts'%}" class="btn btn-dark text-light float-right mb-2">Add new posts</a>
+        <a href="{% url 'dashboard:add_new_posts'%}" class="btn btn-dark text-light float-right mb-2">Add new posts</a>
 
         <table class="table table-hover">
             <thead>
@@ -35,7 +35,7 @@
                     <td>{{ post.category }}</td>
                     <td>{{ post.author }}</td>
                     <td>{{ post.status }}</td>
-                    <td>{% if post.is_feacherd %} <i class="fa-solid fa-check text-success"></i> {% else %} <i class="fa-solid fa-xmark text-danger text-bold"></i> {% endif %}</td>
+                    <td>{% if post.is_feacherd %} <i class="fa-solid fa-check text-success"></i> {% else %} <i class="fa-solid fa-xmark text-danger "></i> {% endif %}</td>
                     <td >
                         <a href="{% url 'dashboard:update_posts' post.pk %}"><i class="fa-solid fa-pen-to-square text-success"></i></a> &nbsp;&nbsp;
                         <a href="{% url 'dashboard:delete_posts' post.pk %}"><i class="fa-solid fa-trash-can text-danger "></i></a>
